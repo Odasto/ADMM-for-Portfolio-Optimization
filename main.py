@@ -26,6 +26,8 @@ def main():
     print(f'Expected Risk = {res[0].T @ Sigma @ res[0]}')
     print(f'Expected Profit = {mu.T @ res[0]}')
 
+    plot(res)
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -81,6 +83,19 @@ def admm(Sigma, mu, epsilon=0.0001, N=1000, rho=1):  # epsilon, N, rho as option
 
     return x[(N - 1) % 2], value, s_norm, r_norm, N
 
+def plot(res):
+    fig, axs = plt.subplots(3)
+
+    axs[0].plot(range(res[4]), res[1])
+    axs[0].set_title("Zielfunktionswert")
+    axs[1].plot(range(res[4]), res[2], color="orange")
+    axs[1].set_yscale("log")
+    axs[1].set_title("s-Norm")
+    axs[2].plot(range(res[4]), res[3], color="red")
+    axs[2].set_yscale("log")
+    axs[2].set_title("r-Norm")
+    fig.tight_layout()
+    plt.show()
 
 if __name__ == "__main__":  #run main if program is executed stand alone
     main()
