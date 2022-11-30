@@ -2,7 +2,7 @@
 
 ## How to run
 
-###Prerequisites:
+### Prerequisites:
 - Numpy
 - Scipy
 - Matplotlib
